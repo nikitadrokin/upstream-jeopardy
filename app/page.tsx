@@ -13,10 +13,11 @@ import { GameOver } from "@/components/GameOver";
 export default function Home() {
   const { currentQuestion, resetGame, gameStarted, undo, history, categories, answeredQuestions } = useGameStore();
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
+  const [debugGameOver, setDebugGameOver] = useState(false);
 
   // Calculate if game is over
   const totalQuestions = categories.reduce((acc, cat) => acc + cat.questions.length, 0);
-  const isGameOver = answeredQuestions.length === totalQuestions && totalQuestions > 0;
+  const isGameOver = (answeredQuestions.length === totalQuestions && totalQuestions > 0) || debugGameOver;
 
   useLockBodyScroll(isResetDialogOpen);
 
@@ -73,6 +74,14 @@ export default function Home() {
             >
               <RotateCcw className="w-4 h-4" />
               Undo
+            </Button>
+
+            <Button
+              variant="secondary"
+              onClick={() => setDebugGameOver(!debugGameOver)}
+              className="gap-2 font-semibold"
+            >
+              {debugGameOver ? "Exit" : "Debug"} Win
             </Button>
 
             <Button

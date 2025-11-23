@@ -5,6 +5,8 @@ import { motion, Variants } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Trophy, Medal } from 'lucide-react';
 import { Button } from './ui/button';
+import { useState } from 'react';
+import { RotateCcw } from 'lucide-react';
 
 interface GameOverProps {
     onReset: () => void;
@@ -12,6 +14,7 @@ interface GameOverProps {
 
 export function GameOver({ onReset }: GameOverProps) {
     const { teams } = useGameStore();
+    const [animationKey, setAnimationKey] = useState(0);
 
     // Sort teams by score descending
     const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
@@ -68,6 +71,7 @@ export function GameOver({ onReset }: GameOverProps) {
 
     return (
         <motion.div
+            key={animationKey}
             className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-5xl mx-auto p-8"
             initial="hidden"
             animate="visible"
@@ -165,7 +169,17 @@ export function GameOver({ onReset }: GameOverProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 3 }}
+                className="flex gap-4"
             >
+                <Button
+                    onClick={() => setAnimationKey(prev => prev + 1)}
+                    size="lg"
+                    variant="outline"
+                    className="text-xl px-8 py-8 rounded-full font-bold shadow-lg hover:scale-105 transition-transform gap-2"
+                >
+                    <RotateCcw className="w-5 h-5" />
+                    Replay
+                </Button>
                 <Button
                     onClick={onReset}
                     size="lg"
