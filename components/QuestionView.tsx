@@ -25,7 +25,7 @@ export function QuestionView({ question }: { question: import('@/lib/store').Que
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div className="min-h-screen flex flex-col items-center justify-center p-8">
-        <div className="container w-full text-center space-y-12 pt-16 relative">
+        <div className="container w-full text-center space-y-12 pt-16 relative px-4">
           <Button
             variant="ghost"
             size="icon"
@@ -49,7 +49,7 @@ export function QuestionView({ question }: { question: import('@/lib/store').Que
             <h2 className="text-2xl text-secondary font-bold uppercase tracking-widest">
               For ${question.value}
             </h2>
-            <p className="text-5xl md:text-6xl font-serif font-bold leading-tight text-foreground">
+            <p className="text-5xl md:text-6xl font-serif font-bold leading-tight text-foreground [text-wrap:pretty]">
               {question.question}
             </p>
           </motion.div>
