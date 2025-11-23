@@ -61,7 +61,7 @@ export function QuestionView() {
                       }}
                       variant={isSelected ? "default" : "outline"}
                       className={cn(
-                        "px-6 py-6 font-bold text-lg shadow-lg min-w-[120px] transition-all",
+                        "px-6 py-6 font-bold text-lg shadow-lg min-w-[120px] transition-all border",
                         isSelected ? "scale-105" : "opacity-70 hover:opacity-100"
                       )}
                     >
