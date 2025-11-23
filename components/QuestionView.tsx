@@ -9,17 +9,21 @@ import { cn } from '@/lib/utils';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { motion, AnimatePresence } from 'motion/react';
 
-export function QuestionView() {
-  const { currentQuestion, closeQuestion, teams, undo } = useGameStore();
+export function QuestionView({ question }: { question: import('@/lib/store').Question }) {
+  const { closeQuestion, teams, undo } = useGameStore();
   const [showAnswer, setShowAnswer] = useState(false);
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
 
   useLockBodyScroll();
 
-  if (!currentQuestion) return null;
-
   return (
-    <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-300">
+    <motion.div
+      className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <div className="min-h-screen flex flex-col items-center justify-center p-8">
         <div className="container w-full text-center space-y-12 pt-16 relative">
           <Button
@@ -43,10 +47,10 @@ export function QuestionView() {
             }}
           >
             <h2 className="text-2xl text-secondary font-bold uppercase tracking-widest">
-              For ${currentQuestion.value}
+              For ${question.value}
             </h2>
             <p className="text-5xl md:text-6xl font-serif font-bold leading-tight text-foreground">
-              {currentQuestion.question}
+              {question.question}
             </p>
           </motion.div>
 
@@ -72,7 +76,7 @@ export function QuestionView() {
                       Correct Response
                     </p>
                     <p className="text-3xl md:text-5xl text-secondary font-bold italic">
-                      {currentQuestion.answer}
+                      {question.answer}
                     </p>
                   </div>
                 </div>
@@ -160,6 +164,6 @@ export function QuestionView() {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

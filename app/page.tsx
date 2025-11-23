@@ -9,6 +9,7 @@ import { RotateCcw, ZoomOut, Smartphone, Monitor } from "lucide-react";
 import { useState } from "react";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 import { GameOver } from "@/components/GameOver";
+import { AnimatePresence } from "motion/react";
 
 export default function Home() {
   const { currentQuestion, resetGame, gameStarted, undo, history, categories, answeredQuestions } = useGameStore();
@@ -100,7 +101,9 @@ export default function Home() {
           <Board />
         )}
 
-        {currentQuestion && <QuestionView />}
+        <AnimatePresence>
+          {currentQuestion && <QuestionView question={currentQuestion} />}
+        </AnimatePresence>
 
         {isResetDialogOpen && (
           <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 animate-in fade-in duration-300">
