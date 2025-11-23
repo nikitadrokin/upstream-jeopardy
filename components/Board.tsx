@@ -1,6 +1,7 @@
 import { useGameStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from './ui/separator';
 
 export function Board() {
   const { categories, selectQuestion, answeredQuestions, teams } = useGameStore();
@@ -9,13 +10,13 @@ export function Board() {
   const maxQuestions = Math.max(...categories.map(c => c.questions.length));
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 flex flex-col gap-8">
+    <div className="w-full mx-auto p-4 flex flex-col gap-8">
       <div className="grid grid-cols-5 gap-4">
         {/* Category Headers */}
         {categories.map((category) => (
-          <Card 
-            key={category.id} 
-            className="bg-primary text-primary-foreground border-primary flex items-center justify-center min-h-[100px] shadow-md rounded-none rounded-t-lg"
+          <Card
+            key={category.id}
+            className="bg-primary text-primary-foreground border-primary flex items-center justify-center min-h-[100px] shadow-md"
           >
             <CardContent className="p-4 text-center font-bold text-xl uppercase tracking-wider">
               {category.title}
@@ -23,13 +24,15 @@ export function Board() {
           </Card>
         ))}
 
+        <Separator className='col-span-full' />
+
         {/* Questions Grid */}
         {Array.from({ length: maxQuestions }).map((_, rowIndex) => (
           categories.map((category) => {
             const question = category.questions[rowIndex];
             // Handle cases where a category might have fewer questions
             if (!question) {
-               return <div key={`empty-${category.id}-${rowIndex}`} className="h-32" />;
+              return <div key={`empty-${category.id}-${rowIndex}`} className="h-32" />;
             }
 
             const isAnswered = answeredQuestions.includes(question.id);
@@ -40,8 +43,8 @@ export function Board() {
                 onClick={() => !isAnswered && selectQuestion(question)}
                 className={cn(
                   "h-32 flex items-center justify-center transition-all duration-200 border-2",
-                  isAnswered 
-                    ? "bg-muted border-muted cursor-default opacity-50" 
+                  isAnswered
+                    ? "bg-muted border-muted cursor-default opacity-50"
                     : "bg-card border-primary/20 hover:bg-accent hover:scale-105 hover:shadow-xl cursor-pointer hover:border-secondary"
                 )}
               >
