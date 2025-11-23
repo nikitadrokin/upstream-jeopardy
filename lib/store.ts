@@ -70,15 +70,6 @@ export const useGameStore = create<GameState>()(
       closeQuestion: (winnerTeamId) => set((state) => {
         if (!state.currentQuestion) return state;
         
-        // Save snapshot
-        const snapshot: GameSnapshot = {
-          categories: state.categories,
-          currentQuestion: state.currentQuestion,
-          answeredQuestions: state.answeredQuestions,
-          teams: state.teams,
-          gameStarted: state.gameStarted,
-        };
-        
         const newAnswered = [...state.answeredQuestions, state.currentQuestion.id];
 
         let newTeams = state.teams;
@@ -94,7 +85,8 @@ export const useGameStore = create<GameState>()(
           currentQuestion: null,
           answeredQuestions: newAnswered,
           teams: newTeams,
-          history: [...state.history, snapshot]
+          // Do not push to history here. 
+          // This ensures that "Undo" takes us back to the state BEFORE the question was opened (Snapshot from selectQuestion).
         };
       }),
 

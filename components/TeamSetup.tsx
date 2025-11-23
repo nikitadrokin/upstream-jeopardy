@@ -5,6 +5,10 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Minus, Plus } from 'lucide-react';
+
+const MIN_TEAMS = 1;
+const MAX_TEAMS = 20;
 
 export function TeamSetup() {
   const { setTeams } = useGameStore();
@@ -27,10 +31,10 @@ export function TeamSetup() {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => setTeamCount(Math.max(1, teamCount - 1))}
+                onClick={() => setTeamCount(Math.max(MIN_TEAMS, teamCount - 1))}
                 className="w-12 h-12 rounded-full text-2xl font-bold"
               >
-                -
+                <Minus />
               </Button>
               <span className="text-4xl font-bold w-16">
                 {teamCount}
@@ -38,10 +42,10 @@ export function TeamSetup() {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => setTeamCount(Math.min(6, teamCount + 1))}
+                onClick={() => setTeamCount(Math.min(MAX_TEAMS, teamCount + 1))}
                 className="w-12 h-12 rounded-full text-2xl font-bold"
               >
-                +
+                <Plus />
               </Button>
             </div>
           </div>

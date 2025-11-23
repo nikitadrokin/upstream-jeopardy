@@ -4,16 +4,26 @@ import { useGameStore } from '@/lib/store';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { X } from "lucide-react";
 
 export function QuestionView() {
-  const { currentQuestion, closeQuestion, teams } = useGameStore();
+  const { currentQuestion, closeQuestion, teams, undo } = useGameStore();
   const [showAnswer, setShowAnswer] = useState(false);
 
   if (!currentQuestion) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 animate-in fade-in duration-300">
-      <div className="max-w-4xl w-full text-center space-y-12">
+      <div className="max-w-4xl w-full text-center space-y-12 relative">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute -top-16 right-4"
+          onClick={undo}
+        >
+          <X className="h-6 w-6" />
+          <span className="sr-only">Undo Selection</span>
+        </Button>
         <div className="space-y-4">
           <h2 className="text-2xl text-secondary font-bold uppercase tracking-widest">
             For ${currentQuestion.value}
