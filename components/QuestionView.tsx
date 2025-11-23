@@ -18,7 +18,7 @@ export function QuestionView() {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute -top-16 right-4"
+          className="absolute -top-16 right-0"
           onClick={undo}
         >
           <X className="h-6 w-6" />
