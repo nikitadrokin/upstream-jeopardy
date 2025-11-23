@@ -42,7 +42,7 @@ export function GameOver({ onReset }: GameOverProps) {
             transition: {
                 type: 'spring',
                 stiffness: 100,
-                damping: 12,
+                damping: 20,
                 // Stagger: 3rd place (custom=2) at 0s, 2nd place (custom=1) at 2s, 1st place (custom=0) at 4s
                 delay: custom === 2 ? 0 : custom === 1 ? ANIMATION_DELAY : ANIMATION_DELAY * 2,
             },
@@ -61,10 +61,11 @@ export function GameOver({ onReset }: GameOverProps) {
     };
 
     const listItemVariants: Variants = {
-        hidden: { y: -30, opacity: 0 },
+        hidden: { y: -30, opacity: 0, filter: 'blur(4px)' },
         visible: {
             y: 0,
             opacity: 1,
+            filter: 'blur(0px)',
             transition: {
                 type: 'spring',
                 stiffness: 100,
@@ -148,7 +149,7 @@ export function GameOver({ onReset }: GameOverProps) {
             {/* Remaining Teams List */}
             {restTeams.length > 0 && (
                 <motion.div
-                    className="w-full max-w-2xl space-y-4 mb-12"
+                    className="w-full max-w-2xl space-y-2 mb-12"
                     variants={listContainerVariants}
                     initial="hidden"
                     animate="visible"
@@ -157,7 +158,7 @@ export function GameOver({ onReset }: GameOverProps) {
                         <motion.div
                             key={team.id}
                             variants={listItemVariants}
-                            className="flex items-center justify-between bg-card/50 p-6 rounded-xl border border-border/50 backdrop-blur-sm"
+                            className="flex items-center justify-between py-3 px-2"
                         >
                             <div className="flex items-center gap-6">
                                 <span className="text-2xl font-bold text-muted-foreground w-8">#{index + 4}</span>
