@@ -12,7 +12,7 @@ interface GameOverProps {
     onReset: () => void;
 }
 
-const ANIMATION_DELAY = 1;
+const ANIMATION_DELAY = 2;
 
 export function GameOver({ onReset }: GameOverProps) {
     const { teams } = useGameStore();
