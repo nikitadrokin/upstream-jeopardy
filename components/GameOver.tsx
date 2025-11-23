@@ -12,6 +12,8 @@ interface GameOverProps {
     onReset: () => void;
 }
 
+const ANIMATION_DELAY = 1;
+
 export function GameOver({ onReset }: GameOverProps) {
     const { teams } = useGameStore();
     const [animationKey, setAnimationKey] = useState(0);
@@ -27,23 +29,24 @@ export function GameOver({ onReset }: GameOverProps) {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.5,
-                delayChildren: 0.5,
+                duration: 0.3,
             },
         },
     };
 
     const podiumVariants: Variants = {
         hidden: { y: 100, opacity: 0 },
-        visible: {
+        visible: (custom: number) => ({
             y: 0,
             opacity: 1,
             transition: {
                 type: 'spring',
                 stiffness: 100,
                 damping: 12,
+                // Stagger: 3rd place (custom=2) at 0s, 2nd place (custom=1) at 2s, 1st place (custom=0) at 4s
+                delay: custom === 2 ? 0 : custom === 1 ? ANIMATION_DELAY : ANIMATION_DELAY * 2,
             },
-        },
+        }),
     };
 
     const listContainerVariants: Variants = {
@@ -52,19 +55,20 @@ export function GameOver({ onReset }: GameOverProps) {
             opacity: 1,
             transition: {
                 staggerChildren: 0.2,
-                delayChildren: 2, // Wait for podium to finish
+                delayChildren: ANIMATION_DELAY * 3, // Wait for all podium animations to finish (0s + 2s + 2s + animation time)
             },
         },
     };
 
     const listItemVariants: Variants = {
-        hidden: { x: -50, opacity: 0 },
+        hidden: { y: -30, opacity: 0 },
         visible: {
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: {
                 type: 'spring',
                 stiffness: 100,
+                damping: 15,
             },
         },
     };
