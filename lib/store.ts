@@ -111,6 +111,7 @@ export const useGameStore = create<GameState>()(
       }),
 
       resetGame: () => set({
+        categories: gameData,
         currentQuestion: null,
         answeredQuestions: [],
         teams: [],
