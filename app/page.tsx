@@ -7,10 +7,13 @@ import { useGameStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, ZoomOut, Smartphone, Monitor } from "lucide-react";
 import { useState } from "react";
+import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 
 export default function Home() {
   const { currentQuestion, resetGame, gameStarted, undo, history } = useGameStore();
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
+
+  useLockBodyScroll(isResetDialogOpen);
 
   if (!gameStarted) {
     return <TeamSetup />;
