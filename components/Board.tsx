@@ -23,7 +23,7 @@ export function Board() {
           </div>
         ))}
 
-        <div className='px-4 col-span-full'><Separator /></div>
+        <div className='px-4 col-span-full animate-in fade-in slide-in-from-bottom-4 duration-500'><Separator /></div>
 
         {/* Questions Grid */}
         {Array.from({ length: maxQuestions }).map((_, rowIndex) => (
@@ -42,7 +42,7 @@ export function Board() {
                 onClick={() => !isAnswered && selectQuestion(question)}
                 disabled={isAnswered}
                 className={cn(
-                  "group h-28 rounded-xl flex items-center justify-center transition-all duration-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4",
+                  "group h-28 rounded-xl flex items-center justify-center transition-all duration-500 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4",
                   isAnswered
                     ? "bg-muted/30 border border-muted/50 cursor-default"
                     : "bg-gradient-to-br from-card to-card/80 border border-border/50 hover:border-secondary/50 cursor-pointer shadow-md hover:shadow-xl hover:scale-105 hover:-translate-y-1 active:scale-95 backdrop-blur-sm"
@@ -63,12 +63,14 @@ export function Board() {
         ))}
       </div>
 
+      <div className='px-4 animate-in fade-in slide-in-from-bottom-4 duration-500'><Separator /></div>
+
       {/* Team Scores */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border/50">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {teams.map((team) => (
           <div
             key={team.id}
-            className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-xl p-5 text-center shadow-sm hover:shadow-md transition-all duration-100 animate-in fade-in slide-in-from-bottom-2"
+            className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-xl p-5 text-center shadow-sm hover:shadow-md transition-all duration-500 animate-in fade-in slide-in-from-bottom-2"
           >
             <div className="text-muted-foreground font-semibold uppercase tracking-widest text-xs mb-2">
               {team.name}
