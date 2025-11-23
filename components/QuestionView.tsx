@@ -47,7 +47,7 @@ export function QuestionView() {
 
               <div className="space-y-8">
                 <p className="text-xl text-muted-foreground uppercase tracking-widest">Select Winners:</p>
-                <div className="flex flex-wrap gap-4 justify-center">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(max(120px,calc(25%_-_1rem)),1fr))] gap-4 justify-center max-w-[calc(100%_-_8rem)] mx-auto">
                   {teams.map((team) => {
                     const isSelected = selectedTeams.includes(team.id);
                     return (
