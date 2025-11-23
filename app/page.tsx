@@ -8,10 +8,15 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw, ZoomOut, Smartphone, Monitor } from "lucide-react";
 import { useState } from "react";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
+import { GameOver } from "@/components/GameOver";
 
 export default function Home() {
-  const { currentQuestion, resetGame, gameStarted, undo, history } = useGameStore();
+  const { currentQuestion, resetGame, gameStarted, undo, history, categories, answeredQuestions } = useGameStore();
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
+
+  // Calculate if game is over
+  const totalQuestions = categories.reduce((acc, cat) => acc + cat.questions.length, 0);
+  const isGameOver = answeredQuestions.length === totalQuestions && totalQuestions > 0;
 
   useLockBodyScroll(isResetDialogOpen);
 
@@ -80,7 +85,11 @@ export default function Home() {
           </div>
         </header>
 
-        <Board />
+        {isGameOver ? (
+          <GameOver onReset={() => setIsResetDialogOpen(true)} />
+        ) : (
+          <Board />
+        )}
 
         {currentQuestion && <QuestionView />}
 
