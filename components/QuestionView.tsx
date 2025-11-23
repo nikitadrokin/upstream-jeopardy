@@ -17,7 +17,7 @@ export function QuestionView() {
   return (
     <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-300">
       <div className="min-h-screen flex flex-col items-center justify-center p-8">
-        <div className="max-w-4xl w-full text-center space-y-12 relative">
+        <div className="container w-full text-center space-y-12 relative">
           <Button
             variant="ghost"
             size="icon"
