@@ -34,7 +34,7 @@ export function Board() {
                return <div key={`empty-${category.id}-${rowIndex}`} className="h-32" />;
             }
 
-            const isAnswered = answeredQuestions.has(question.id);
+            const isAnswered = answeredQuestions.includes(question.id);
 
             return (
               <Card
