@@ -42,7 +42,7 @@ export function Board() {
                 onClick={() => !isAnswered && selectQuestion(question)}
                 disabled={isAnswered}
                 className={cn(
-                  "h-28 rounded-xl flex items-center justify-center transition-all duration-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4",
+                  "group h-28 rounded-xl flex items-center justify-center transition-all duration-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4",
                   isAnswered
                     ? "bg-muted/30 border border-muted/50 cursor-default"
                     : "bg-gradient-to-br from-card to-card/80 border border-border/50 hover:border-secondary/50 cursor-pointer shadow-md hover:shadow-xl hover:scale-105 hover:-translate-y-1 active:scale-95 backdrop-blur-sm"
@@ -51,7 +51,7 @@ export function Board() {
                 {!isAnswered && (
                   <>
                     {/* Subtle shine effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-100" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
                     <span className="text-5xl font-bold text-secondary relative z-10 tracking-tight">
                       ${question.value}
                     </span>
