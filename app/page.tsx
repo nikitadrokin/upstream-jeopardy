@@ -64,7 +64,7 @@ export default function Home() {
 
       <div className="container mx-auto py-8 hidden md:block">
         <header className="flex justify-between items-center mb-8 px-4">
-          <h1 className="text-4xl font-bold text-primary tracking-wider uppercase">Upstream Jeopardy</h1>
+          <h1 className="text-4xl font-bold text-primary tracking-wider uppercase select-none">Upstream Jeopardy</h1>
           <div className="flex items-center gap-4">
             <Button
               variant="outline"
