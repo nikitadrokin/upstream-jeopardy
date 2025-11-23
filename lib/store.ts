@@ -1,8 +1,8 @@
 import { create } from 'zustand';
+import gameData from './game-data.json';
 
 export type Question = {
   id: string;
-  categoryId: string;
   value: number;
   question: string;
   answer: string;
@@ -25,31 +25,8 @@ interface GameState {
   resetGame: () => void;
 }
 
-// Mock Data Generation
-const CATEGORY_TITLES = ["History", "Science", "Geography", "Pop Culture", "Technology"];
-const VALUES = [100, 200, 300, 400, 500];
-
-const generateMockData = (): Category[] => {
-  return CATEGORY_TITLES.map((title, catIndex) => {
-    const categoryId = `cat-${catIndex}`;
-    return {
-      id: categoryId,
-      title,
-      questions: VALUES.map((value, valIndex) => ({
-        id: `${categoryId}-q-${valIndex}`,
-        categoryId,
-        value,
-        question: `This is a ${value} point question about ${title}.`,
-        answer: `What is the answer to the ${value} point ${title} question?`
-      }))
-    };
-  });
-};
-
-const initialCategories = generateMockData();
-
 export const useGameStore = create<GameState>((set) => ({
-  categories: initialCategories,
+  categories: gameData,
   currentQuestion: null,
   answeredQuestions: new Set(),
   score: 0,
