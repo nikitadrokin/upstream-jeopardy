@@ -83,7 +83,7 @@ export function GameOver({ onReset }: GameOverProps) {
             variants={containerVariants}
         >
             <motion.h1
-                className="text-6xl font-bold text-primary mb-16 uppercase tracking-widest text-center"
+                className="text-6xl font-bold text-primary mt-10 mb-24 uppercase tracking-widest text-center"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
