@@ -35,10 +35,11 @@ export function GameOver({ onReset }: GameOverProps) {
     };
 
     const podiumVariants: Variants = {
-        hidden: { y: 100, opacity: 0 },
+        hidden: { y: 100, opacity: 0, filter: 'blur(2px)' },
         visible: (custom: number) => ({
             y: 0,
             opacity: 1,
+            filter: 'blur(0px)',
             transition: {
                 type: 'spring',
                 stiffness: 100,
@@ -92,7 +93,7 @@ export function GameOver({ onReset }: GameOverProps) {
             </motion.h1>
 
             {/* Podium */}
-            <div className="flex items-end justify-center gap-4 mb-16 w-full h-[400px]">
+            <div className="flex items-end justify-center gap-6 mb-16 w-full h-[420px]">
                 {/* 2nd Place */}
                 {topThree[1] && (
                     <motion.div
@@ -100,12 +101,15 @@ export function GameOver({ onReset }: GameOverProps) {
                         variants={podiumVariants}
                         custom={1}
                     >
-                        <div className="mb-4 text-center">
+                        <div className="mb-6 text-center">
+                            <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-slate-300 to-slate-500 flex items-center justify-center shadow-lg">
+                                <Medal className="w-9 h-9 text-slate-100" />
+                            </div>
                             <div className="text-2xl font-bold text-foreground mb-2">{topThree[1].name}</div>
-                            <div className="text-3xl font-bold text-secondary">${topThree[1].score}</div>
+                            <div className="text-3xl font-bold bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent">${topThree[1].score}</div>
                         </div>
-                        <div className="w-full bg-slate-700 h-[200px] rounded-t-lg flex items-start justify-center pt-4 relative border-t-4 border-slate-500 shadow-2xl">
-                            <div className="text-6xl font-bold text-slate-400">2</div>
+                        <div className="w-full bg-gradient-to-b from-slate-600 to-slate-700 h-[200px] rounded-t-2xl rounded-b-sm flex items-start justify-center pt-6 relative border-t-4 border-slate-400 shadow-[0_-10px_40px_rgba(148,163,184,0.3)]">
+                            <div className="text-7xl font-bold bg-gradient-to-b from-slate-200 to-slate-400 bg-clip-text text-transparent">2</div>
                         </div>
                     </motion.div>
                 )}
@@ -117,13 +121,15 @@ export function GameOver({ onReset }: GameOverProps) {
                         variants={podiumVariants}
                         custom={0}
                     >
-                        <div className="mb-4 text-center">
-                            <Trophy className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
+                        <div className="mb-6 text-center">
+                            <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-300 to-yellow-400 flex items-center justify-center shadow-[0_0_40px_rgba(250,204,21,0.8)]">
+                                <Trophy className="w-11 h-11 text-yellow-800" />
+                            </div>
                             <div className="text-3xl font-bold text-foreground mb-2">{topThree[0].name}</div>
-                            <div className="text-5xl font-bold text-yellow-400">${topThree[0].score}</div>
+                            <div className="text-5xl font-bold bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400 bg-clip-text text-transparent">${topThree[0].score}</div>
                         </div>
-                        <div className="w-full bg-yellow-600/20 h-[280px] rounded-t-lg flex items-start justify-center pt-4 relative border-t-4 border-yellow-400 shadow-[0_0_50px_rgba(250,204,21,0.3)]">
-                            <div className="text-8xl font-bold text-yellow-400">1</div>
+                        <div className="w-full bg-gradient-to-b from-yellow-400/40 via-yellow-500/30 to-yellow-600/40 h-[280px] rounded-t-2xl rounded-b-sm flex items-start justify-center pt-6 relative border-t-4 border-yellow-300 shadow-[0_-10px_60px_rgba(250,204,21,0.6)] animate-pulse-subtle">
+                            <div className="text-9xl font-bold bg-gradient-to-b from-yellow-200 to-yellow-400 bg-clip-text text-transparent">1</div>
                         </div>
                     </motion.div>
                 )}
@@ -135,12 +141,15 @@ export function GameOver({ onReset }: GameOverProps) {
                         variants={podiumVariants}
                         custom={2}
                     >
-                        <div className="mb-4 text-center">
+                        <div className="mb-6 text-center">
+                            <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center shadow-lg">
+                                <Medal className="w-9 h-9 text-amber-100" />
+                            </div>
                             <div className="text-2xl font-bold text-foreground mb-2">{topThree[2].name}</div>
-                            <div className="text-3xl font-bold text-amber-700">${topThree[2].score}</div>
+                            <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent">${topThree[2].score}</div>
                         </div>
-                        <div className="w-full bg-amber-900/40 h-[140px] rounded-t-lg flex items-start justify-center pt-4 relative border-t-4 border-amber-700 shadow-2xl">
-                            <div className="text-6xl font-bold text-amber-700">3</div>
+                        <div className="w-full bg-gradient-to-b from-amber-700 to-amber-900 h-[140px] rounded-t-2xl rounded-b-sm flex items-start justify-center pt-6 relative border-t-4 border-amber-600 shadow-[0_-10px_40px_rgba(217,119,6,0.3)]">
+                            <div className="text-7xl font-bold bg-gradient-to-b from-amber-400 to-amber-600 bg-clip-text text-transparent">3</div>
                         </div>
                     </motion.div>
                 )}
