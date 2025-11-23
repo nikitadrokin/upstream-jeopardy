@@ -107,7 +107,6 @@ export const useGameStore = create<GameState>()(
             score: 0,
           })),
           gameStarted: true,
-          history: [...state.history, snapshot]
         };
       }),
 
