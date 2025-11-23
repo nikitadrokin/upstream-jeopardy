@@ -39,7 +39,7 @@ export function QuestionView() {
             transition={{
               y: { type: 'spring', stiffness: 100, damping: 20, delay: 0.1 },
               opacity: { duration: 0.3, delay: 0.1 },
-              layout: { type: 'spring', stiffness: 250, damping: 30, duration: 0.5 }
+              layout: { duration: 0.4, ease: [0.32, 0.72, 0, 1] }
             }}
           >
             <h2 className="text-2xl text-secondary font-bold uppercase tracking-widest">
@@ -61,7 +61,7 @@ export function QuestionView() {
                 transition={{
                   y: { type: 'spring', stiffness: 100, damping: 20 },
                   opacity: { duration: 0.3 },
-                  layout: { type: 'spring', stiffness: 300, damping: 30 }
+                  layout: { duration: 0.4, ease: [0.32, 0.72, 0, 1] }
                 }}
                 layout
               >
