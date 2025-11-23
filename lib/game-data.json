@@ -7,31 +7,31 @@
         "id": "life-of-jesus-100",
         "value": 100,
         "question": "Jesus calmed a storm on this large freshwater lake, also called the Sea of Kinneret.",
-        "answer": "What is the Sea of Galilee?"
+        "answer": "Sea of Galilee"
       },
       {
         "id": "life-of-jesus-200",
         "value": 200,
         "question": "When questioned about paying taxes to Caesar, Jesus asked for one of these coins.",
-        "answer": "What is a denarius?"
+        "answer": "Denarius"
       },
       {
         "id": "life-of-jesus-300",
         "value": 300,
         "question": "Jesus healed this official’s daughter after saying she was merely “asleep.”",
-        "answer": "Who is Jairus?"
+        "answer": "Jairus"
       },
       {
         "id": "life-of-jesus-400",
         "value": 400,
         "question": "Jesus identified this man as “an Israelite in whom there is no deceit.”",
-        "answer": "Who is Nathanael?"
+        "answer": "Nathanael"
       },
       {
         "id": "life-of-jesus-500",
         "value": 500,
         "question": "Jesus curses a fig tree outside this village, the same place where Mary anointed His feet with perfume.",
-        "answer": "What is Bethany?"
+        "answer": "Bethany"
       }
     ]
   },
@@ -43,31 +43,31 @@
         "id": "ot-nt-100",
         "value": 100,
         "question": "In the NT, Jesus delivered His most famous sermon on this mount.",
-        "answer": "What is the Sermon on the Mount?"
+        "answer": "Sermon on the Mount"
       },
       {
         "id": "ot-nt-200",
         "value": 200,
         "question": "In the OT, God gave Israel the Ten Commandments at this mountain; in the NT, Paul later called it “Hagar” in Galatians.",
-        "answer": "What is Mount Sinai?"
+        "answer": "Mount Sinai"
       },
       {
         "id": "ot-nt-300",
         "value": 300,
         "question": "Hebrews compares Jesus’ priesthood to this mysterious OT figure who was both king and priest.",
-        "answer": "Who is Melchizedek?"
+        "answer": "Melchizedek"
       },
       {
         "id": "ot-nt-400",
         "value": 400,
         "question": "Matthew quotes this specific Old Testament prophet to show that the Messiah would be called “Immanuel.”",
-        "answer": "Who is Isaiah?"
+        "answer": "Isaiah"
       },
       {
         "id": "ot-nt-500",
         "value": 500,
         "question": "When Jesus cries “My God, my God, why have you forsaken me?” on the cross, He is quoting the opening line of this Psalm.",
-        "answer": "What is Psalm 22?"
+        "answer": "Psalm 22"
       }
     ]
   },
@@ -79,31 +79,31 @@
         "id": "random-100",
         "value": 100,
         "question": "Sold for silver, risen without a sword, he fed nations from a throne that wasn’t his homeland.",
-        "answer": "Who is Joseph?"
+        "answer": "Joseph"
       },
       {
         "id": "random-200",
         "value": 200,
         "question": "Paul and Silas were freed from prison after one of these natural events shook the foundations.",
-        "answer": "What is an earthquake?"
+        "answer": "Earthquake"
       },
       {
         "id": "random-300",
         "value": 300,
         "question": "This man, a physician and companion of Paul, and also a lowkey historian, who carefully investigated everything from the beginning to write an orderly account of events.",
-        "answer": "Who is Luke?"
+        "answer": "Luke"
       },
       {
         "id": "random-400",
         "value": 400,
         "question": "The first animal ever killed in the Bible.",
-        "answer": "What is a lamb (or sheep)?"
+        "answer": "Lamb (or sheep)"
       },
       {
         "id": "random-500",
         "value": 500,
         "question": "The prophet who married Gomer as a living illustration of Israel’s unfaithfulness.",
-        "answer": "Who is Hosea?"
+        "answer": "Hosea"
       }
     ]
   },
@@ -115,31 +115,31 @@
         "id": "women-in-bible-100",
         "value": 100,
         "question": "PLACEHOLDER: This question was missing from the provided data.",
-        "answer": "What is a placeholder?"
+        "answer": "Free points for the current team! Blame Paul Bas."
       },
       {
         "id": "women-in-bible-200",
         "value": 200,
         "question": "A quiet woman, yet laughter echoed in a tent due to disbelief of promise.",
-        "answer": "Who is Sarah?"
+        "answer": "Sarah"
       },
       {
         "id": "women-in-bible-300",
         "value": 300,
         "question": "A famine drove a journey; loyalty drove a return. A foreign widow whose devotion made kings possible.",
-        "answer": "Who is Ruth?"
+        "answer": "Ruth"
       },
       {
         "id": "women-in-bible-400",
         "value": 400,
         "question": "Hidden in plain sight, raised in exile; threw a party just not for everybody, though saved somebody…",
-        "answer": "Who is Esther?"
+        "answer": "Esther"
       },
       {
         "id": "women-in-bible-500",
         "value": 500,
         "question": "A sitting posture at a Rabbi’s feet contrasted with agitated service.",
-        "answer": "Who is Mary of Bethany?"
+        "answer": "Mary of Bethany"
       }
     ]
   },
@@ -151,31 +151,31 @@
         "id": "divinely-paired-100",
         "value": 100,
         "question": "Met at a well—tears, kisses, and a seven-year wait sealed the match.",
-        "answer": "Who are Jacob and Rachel?"
+        "answer": "Jacob and Rachel"
       },
       {
         "id": "divinely-paired-200",
         "value": 200,
         "question": "Servant and thirsty camels. She might’ve been a little scared to follow the servant, but he probably was a good salesperson and convinced her",
-        "answer": "Who are Isaac and Rebekah?"
+        "answer": "Isaac and Rebekah"
       },
       {
         "id": "divinely-paired-300",
         "value": 300,
         "question": "A judge, a riddle-lover, and a Philistine hair-collector whose question cost a kingdom’s champion his strength.",
-        "answer": "Who are Samson and Delilah?"
+        "answer": "Samson and Delilah"
       },
       {
         "id": "divinely-paired-400",
         "value": 400,
         "question": "Stayed home in spring; one neighbor bathed where palace eyes could see. A messenger, a letter to a general, and a first child who did not live.",
-        "answer": "Who are David and Bathsheba?"
+        "answer": "David and Bathsheba"
       },
       {
         "id": "divinely-paired-500",
         "value": 500,
         "question": "One tentmaker shared a trade and a mission; one spouse’s name usually appears first. A Roman Empire workshop became a classroom where an eloquent Alexandrian learned “the way” more accurately.",
-        "answer": "Who are Aquila and Priscilla?"
+        "answer": "Aquila and Priscilla"
       }
     ]
   }
