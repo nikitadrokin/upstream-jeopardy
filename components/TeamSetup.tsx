@@ -16,16 +16,17 @@ export function TeamSetup() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-background">
-      <Card className="w-full max-w-md shadow-2xl">
+      <Card className="w-full max-w-lg shadow-2xl">
         <CardHeader>
           <CardTitle className="text-4xl font-bold text-center text-primary uppercase tracking-wider">
-            Game Setup
+            Welcome to Upstream Jeopardy!
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-8">
+          <p className="text-center text-xl font-medium text-muted-foreground">Let's set up the game</p>
           <div className="space-y-4 text-center">
-            <Label className="text-xl font-medium">
-              How many teams?
+            <Label className="text-xl font-medium inline-block">
+              How many teams are playing?
             </Label>
             <div className="flex items-center justify-center gap-6">
               <Button
