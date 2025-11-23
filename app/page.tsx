@@ -76,13 +76,13 @@ export default function Home() {
               Undo
             </Button>
 
-            <Button
+            {process.env.NODE_ENV === "development" && <Button
               variant="secondary"
               onClick={() => setDebugGameOver(!debugGameOver)}
               className="gap-2 font-semibold"
             >
               {debugGameOver ? "Exit" : "Debug"} Win
-            </Button>
+            </Button>}
 
             <Button
               variant="destructive"
