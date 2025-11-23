@@ -5,10 +5,12 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { X } from "lucide-react";
+import { cn } from '@/lib/utils';
 
 export function QuestionView() {
   const { currentQuestion, closeQuestion, teams, undo } = useGameStore();
   const [showAnswer, setShowAnswer] = useState(false);
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
 
   if (!currentQuestion) return null;
 
@@ -42,30 +44,57 @@ export function QuestionView() {
               </p>
             </div>
 
-            <div className="space-y-4">
-              <p className="text-xl text-muted-foreground uppercase tracking-widest">Award Points To:</p>
+            <div className="space-y-8">
+              <p className="text-xl text-muted-foreground uppercase tracking-widest">Select Winners:</p>
               <div className="flex flex-wrap gap-4 justify-center">
-                {teams.map((team) => (
-                  <Button
-                    key={team.id}
-                    onClick={() => {
-                      setShowAnswer(false);
-                      closeQuestion(team.id);
-                    }}
-                    className="px-6 py-6 font-bold text-lg shadow-lg min-w-[120px]"
-                  >
-                    {team.name}
-                  </Button>
-                ))}
+                {teams.map((team) => {
+                  const isSelected = selectedTeams.includes(team.id);
+                  return (
+                    <Button
+                      key={team.id}
+                      onClick={() => {
+                        if (isSelected) {
+                          setSelectedTeams(selectedTeams.filter(id => id !== team.id));
+                        } else {
+                          setSelectedTeams([...selectedTeams, team.id]);
+                        }
+                      }}
+                      variant={isSelected ? "default" : "outline"}
+                      className={cn(
+                        "px-6 py-6 font-bold text-lg shadow-lg min-w-[120px] transition-all",
+                        isSelected ? "scale-105" : "opacity-70 hover:opacity-100"
+                      )}
+                    >
+                      {team.name}
+                    </Button>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col items-center gap-4 pt-8">
                 <Button
-                  variant="secondary"
                   onClick={() => {
                     setShowAnswer(false);
-                    closeQuestion();
+                    closeQuestion(selectedTeams);
                   }}
-                  className="px-6 py-6 font-bold text-lg shadow-lg min-w-[120px]"
+                  size="lg"
+                  className="px-12 py-6 text-xl font-bold rounded-full shadow-xl animate-in zoom-in duration-300 min-w-[200px]"
                 >
-                  No One
+                  Continue
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    if (selectedTeams.length === teams.length) {
+                      setSelectedTeams([]);
+                    } else {
+                      setSelectedTeams(teams.map(t => t.id));
+                    }
+                  }}
+                  className="text-muted-foreground hover:text-foreground rounded-full"
+                >
+                  {selectedTeams.length === teams.length ? "Deselect All" : "Select All Teams"}
                 </Button>
               </div>
             </div>
@@ -84,6 +113,6 @@ export function QuestionView() {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 }

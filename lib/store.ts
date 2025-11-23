@@ -33,7 +33,7 @@ interface GameState extends GameSnapshot {
   history: GameSnapshot[];
   
   selectQuestion: (question: Question) => void;
-  closeQuestion: (winnerTeamId?: string) => void;
+  closeQuestion: (winnerTeamIds?: string[]) => void;
   setTeams: (count: number) => void;
   resetGame: () => void;
   undo: () => void;
@@ -67,15 +67,15 @@ export const useGameStore = create<GameState>()(
         };
       }),
 
-      closeQuestion: (winnerTeamId) => set((state) => {
+      closeQuestion: (winnerTeamIds) => set((state) => {
         if (!state.currentQuestion) return state;
         
         const newAnswered = [...state.answeredQuestions, state.currentQuestion.id];
 
         let newTeams = state.teams;
-        if (winnerTeamId) {
+        if (winnerTeamIds && winnerTeamIds.length > 0) {
           newTeams = state.teams.map(team => 
-            team.id === winnerTeamId 
+            winnerTeamIds.includes(team.id)
               ? { ...team, score: team.score + (state.currentQuestion?.value || 0) }
               : team
           );
