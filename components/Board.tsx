@@ -1,5 +1,3 @@
-'use client';
-
 import { useGameStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from "@/components/ui/card";

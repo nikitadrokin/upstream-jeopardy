@@ -21,17 +21,22 @@ export type Team = {
   score: number;
 };
 
-interface GameState {
+interface GameSnapshot {
   categories: Category[];
   currentQuestion: Question | null;
   answeredQuestions: string[];
   teams: Team[];
   gameStarted: boolean;
+}
+
+interface GameState extends GameSnapshot {
+  history: GameSnapshot[];
   
   selectQuestion: (question: Question) => void;
   closeQuestion: (winnerTeamId?: string) => void;
   setTeams: (count: number) => void;
   resetGame: () => void;
+  undo: () => void;
 }
 
 export const useGameStore = create<GameState>()(
@@ -42,14 +47,37 @@ export const useGameStore = create<GameState>()(
       answeredQuestions: [],
       teams: [],
       gameStarted: false,
+      history: [],
 
       selectQuestion: (question) => set((state) => {
         if (state.answeredQuestions.includes(question.id)) return state;
-        return { currentQuestion: question };
+        
+        // Save snapshot
+        const snapshot: GameSnapshot = {
+          categories: state.categories,
+          currentQuestion: state.currentQuestion,
+          answeredQuestions: state.answeredQuestions,
+          teams: state.teams,
+          gameStarted: state.gameStarted,
+        };
+
+        return { 
+          currentQuestion: question,
+          history: [...state.history, snapshot]
+        };
       }),
 
       closeQuestion: (winnerTeamId) => set((state) => {
         if (!state.currentQuestion) return state;
+        
+        // Save snapshot
+        const snapshot: GameSnapshot = {
+          categories: state.categories,
+          currentQuestion: state.currentQuestion,
+          answeredQuestions: state.answeredQuestions,
+          teams: state.teams,
+          gameStarted: state.gameStarted,
+        };
         
         const newAnswered = [...state.answeredQuestions, state.currentQuestion.id];
 
@@ -66,16 +94,29 @@ export const useGameStore = create<GameState>()(
           currentQuestion: null,
           answeredQuestions: newAnswered,
           teams: newTeams,
+          history: [...state.history, snapshot]
         };
       }),
 
-      setTeams: (count) => set({
-        teams: Array.from({ length: count }, (_, i) => ({
-          id: `team-${i + 1}`,
-          name: `Team ${i + 1}`,
-          score: 0,
-        })),
-        gameStarted: true,
+      setTeams: (count) => set((state) => {
+        // Save snapshot (even for initial setup, though history might be empty usually)
+        const snapshot: GameSnapshot = {
+          categories: state.categories,
+          currentQuestion: state.currentQuestion,
+          answeredQuestions: state.answeredQuestions,
+          teams: state.teams,
+          gameStarted: state.gameStarted,
+        };
+
+        return {
+          teams: Array.from({ length: count }, (_, i) => ({
+            id: `team-${i + 1}`,
+            name: `Team ${i + 1}`,
+            score: 0,
+          })),
+          gameStarted: true,
+          history: [...state.history, snapshot]
+        };
       }),
 
       resetGame: () => set({
@@ -83,6 +124,19 @@ export const useGameStore = create<GameState>()(
         answeredQuestions: [],
         teams: [],
         gameStarted: false,
+        history: [],
+      }),
+
+      undo: () => set((state) => {
+        if (state.history.length === 0) return state;
+        
+        const previous = state.history[state.history.length - 1];
+        const newHistory = state.history.slice(0, -1);
+        
+        return {
+          ...previous,
+          history: newHistory,
+        };
       }),
     }),
     {
