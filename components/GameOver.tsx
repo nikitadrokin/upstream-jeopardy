@@ -35,7 +35,7 @@ export function GameOver({ onReset }: GameOverProps) {
     };
 
     const podiumVariants: Variants = {
-        hidden: { y: 100, opacity: 0, filter: 'blur(2px)' },
+        hidden: { y: 50, opacity: 0, filter: 'blur(2px)' },
         visible: (custom: number) => ({
             y: 0,
             opacity: 1,
@@ -78,19 +78,19 @@ export function GameOver({ onReset }: GameOverProps) {
     return (
         <motion.div
             key={animationKey}
-            className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-5xl mx-auto p-8"
+            className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-5xl mx-auto p-8 pt-36"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
         >
-            <motion.h1
+            {/* <motion.h1
                 className="text-6xl font-bold text-primary mt-10 mb-24 uppercase tracking-widest text-center"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
                 Game Over
-            </motion.h1>
+            </motion.h1> */}
 
             {/* Podium */}
             <div className="flex items-end justify-center gap-6 mb-16 w-full h-[420px]">
@@ -180,9 +180,9 @@ export function GameOver({ onReset }: GameOverProps) {
             )}
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3 }}
+                transition={{ delay: ANIMATION_DELAY * 3 }}
                 className="flex gap-4"
             >
                 <Button
