@@ -2,26 +2,30 @@
 
 import { Board } from "@/components/Board";
 import { QuestionView } from "@/components/QuestionView";
+import { TeamSetup } from "@/components/TeamSetup";
 import { useGameStore } from "@/lib/store";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  const { currentQuestion, resetGame, score } = useGameStore();
+  const { currentQuestion, resetGame, gameStarted } = useGameStore();
+
+  if (!gameStarted) {
+    return <TeamSetup />;
+  }
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto py-8">
         <header className="flex justify-between items-center mb-8 px-4">
-          <h1 className="text-4xl font-bold text-yellow-400 tracking-wider uppercase">Jeopardy!</h1>
+          <h1 className="text-4xl font-bold text-primary tracking-wider uppercase">Jeopardy!</h1>
           <div className="flex items-center gap-6">
-            <div className="text-2xl font-bold">
-              Score: <span className="text-yellow-400">${score}</span>
-            </div>
-            <button 
+            <Button 
               onClick={resetGame}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition-colors"
+              variant="destructive"
+              className="font-semibold"
             >
               Reset Game
-            </button>
+            </Button>
           </div>
         </header>
 

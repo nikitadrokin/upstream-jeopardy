@@ -2,24 +2,27 @@
 
 import { useGameStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
+import { Card, CardContent } from "@/components/ui/card";
 
 export function Board() {
-  const { categories, selectQuestion, answeredQuestions } = useGameStore();
+  const { categories, selectQuestion, answeredQuestions, teams } = useGameStore();
 
   // Calculate the maximum number of questions in any category to determine rows
   const maxQuestions = Math.max(...categories.map(c => c.questions.length));
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4">
+    <div className="w-full max-w-7xl mx-auto p-4 flex flex-col gap-8">
       <div className="grid grid-cols-5 gap-4">
         {/* Category Headers */}
         {categories.map((category) => (
-          <div 
+          <Card 
             key={category.id} 
-            className="bg-blue-800 text-white p-4 text-center font-bold text-xl uppercase tracking-wider flex items-center justify-center min-h-[100px] rounded-t-lg shadow-md"
+            className="bg-primary text-primary-foreground border-primary flex items-center justify-center min-h-[100px] shadow-md rounded-none rounded-t-lg"
           >
-            {category.title}
-          </div>
+            <CardContent className="p-4 text-center font-bold text-xl uppercase tracking-wider">
+              {category.title}
+            </CardContent>
+          </Card>
         ))}
 
         {/* Questions Grid */}
@@ -34,21 +37,38 @@ export function Board() {
             const isAnswered = answeredQuestions.has(question.id);
 
             return (
-              <button
+              <Card
                 key={question.id}
                 onClick={() => !isAnswered && selectQuestion(question)}
-                disabled={isAnswered}
                 className={cn(
-                  "h-32 flex items-center justify-center text-4xl font-bold transition-all duration-200 rounded-lg shadow-sm border-2 border-blue-900/20",
+                  "h-32 flex items-center justify-center transition-all duration-200 border-2",
                   isAnswered 
-                    ? "bg-gray-200 text-gray-400 cursor-default" 
-                    : "bg-blue-600 text-yellow-400 hover:bg-blue-500 hover:scale-105 hover:shadow-xl cursor-pointer"
+                    ? "bg-muted border-muted cursor-default opacity-50" 
+                    : "bg-card border-primary/20 hover:bg-accent hover:scale-105 hover:shadow-xl cursor-pointer hover:border-secondary"
                 )}
               >
-                {isAnswered ? "" : `$${question.value}`}
-              </button>
+                <CardContent className="p-0 text-4xl font-bold text-secondary">
+                  {isAnswered ? "" : `$${question.value}`}
+                </CardContent>
+              </Card>
             );
           })
+        ))}
+      </div>
+
+      {/* Team Scores */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-border">
+        {teams.map((team) => (
+          <Card key={team.id} className="bg-card/50 border-border">
+            <CardContent className="p-4 text-center">
+              <div className="text-muted-foreground font-bold uppercase tracking-wider text-sm mb-1">
+                {team.name}
+              </div>
+              <div className="text-3xl font-bold text-secondary">
+                ${team.score}
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>
